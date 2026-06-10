@@ -1,0 +1,29 @@
+app.py
+  s_5fefeb5707fca2::t_b04e52f5fd73e6 25-29
+  s_5fefeb5707fca2::t_08172e8951699a 30-34
+templates/terms.html
+  s_5fefeb5707fca2::t_70b77b13348745 1-194
+templates/privacy.html
+  s_5fefeb5707fca2::t_1087717228135e 1-213
+static/css/style.css
+  s_5fefeb5707fca2::t_2494ad07600631 510-526
+templates/base.html
+  s_5fefeb5707fca2::t_74a25417616e08 39
+  s_5fefeb5707fca2::t_81dfe9769cf6b1 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9d3f22edd12d2a41c6cce9d58b63348129aa699b",
+  "prompts": {},
+  "sessions": {
+    "s_5fefeb5707fca2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5123a1f3-907a-4a0e-a982-6ff5b72a41e0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
