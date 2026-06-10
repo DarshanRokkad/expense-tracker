@@ -1,0 +1,28 @@
+static/css/landing.css
+  s_5fefeb5707fca2::t_aedc415b50c1bb 1-225
+.gitignore
+  h_afa8b216fb6144 9
+templates/landing.html
+  s_5fefeb5707fca2::t_65df23745b7f62 5-8,12-16,18-19,22-23,26-27,30-36,38-43,45-48,50-53,56-73
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d67a486889b6533b5fbc82ebc1bcf7d0883d5707",
+  "prompts": {},
+  "humans": {
+    "h_afa8b216fb6144": {
+      "author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_5fefeb5707fca2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5123a1f3-907a-4a0e-a982-6ff5b72a41e0",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
