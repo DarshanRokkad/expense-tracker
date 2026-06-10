@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}Terms and Conditions — Spendly{% endblock %}
+
+{% block head %}
+<style>
+    .legal-section {
+        padding: 4rem 2rem 5rem;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .legal-header {
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 2rem;
+    }
+
+    .legal-badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-light);
+        padding: 0.3rem 0.75rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+    }
+
+    .legal-title {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: var(--ink);
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-meta {
+        font-size: 0.875rem;
+        color: var(--ink-faint);
+    }
+
+    .legal-body h2 {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--ink);
+        margin-top: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-body p {
+        font-size: 0.9375rem;
+        color: var(--ink-soft);
+        line-height: 1.75;
+        margin-bottom: 1rem;
+    }
+
+    .legal-body ul {
+        margin: 0.5rem 0 1rem 1.5rem;
+        color: var(--ink-soft);
+        font-size: 0.9375rem;
+        line-height: 1.75;
+    }
+
+    .legal-body ul li {
+        margin-bottom: 0.35rem;
+    }
+
+    .legal-contact-box {
+        margin-top: 3rem;
+        background: var(--paper-warm);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 1.5rem 2rem;
+    }
+
+    .legal-contact-box p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+    }
+
+    .legal-contact-box a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .legal-contact-box a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="legal-section">
+
+    <header class="legal-header">
+        <div class="legal-badge">Legal</div>
+        <h1 class="legal-title">Terms and Conditions</h1>
+        <p class="legal-meta">Last updated: June 10, 2026</p>
+    </header>
+
+    <div class="legal-body">
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+            By accessing or using Spendly ("the Service"), you agree to be bound by these Terms and
+            Conditions. If you do not agree to these terms, please do not use the Service. Your continued
+            use of Spendly following any changes to these terms constitutes your acceptance of those changes.
+        </p>
+
+        <h2>2. Use of Service</h2>
+        <p>
+            Spendly is a personal finance tracking tool designed for individual use. You agree to use the
+            Service only for lawful purposes and in accordance with these Terms. Specifically, you agree
+            not to:
+        </p>
+        <ul>
+            <li>Use the Service for any illegal or unauthorised purpose.</li>
+            <li>Attempt to gain unauthorised access to any part of the Service or its related systems.</li>
+            <li>Interfere with or disrupt the integrity or performance of the Service.</li>
+            <li>Reproduce, duplicate, or resell any part of the Service without express written permission.</li>
+        </ul>
+        <p>
+            We reserve the right to suspend or terminate access for any user who violates these terms.
+        </p>
+
+        <h2>3. User Accounts</h2>
+        <p>
+            You are responsible for maintaining the confidentiality of your account credentials and for all
+            activity that occurs under your account. You agree to notify us immediately of any unauthorised
+            use of your account. Spendly cannot and will not be liable for any loss or damage arising from
+            your failure to keep your credentials secure.
+        </p>
+
+        <h2>4. User Data</h2>
+        <p>
+            All expense records, categories, and financial data you enter into Spendly belong to you. We
+            do not sell your personal data to third parties. Data entered into the Service is stored
+            securely and used solely to provide and improve the Service.
+        </p>
+        <p>
+            You may export or delete your data at any time from your account settings. Upon account
+            deletion, all associated data will be permanently removed from our systems within 30 days.
+        </p>
+
+        <h2>5. Intellectual Property</h2>
+        <p>
+            The Spendly name, logo, design, and all content created by us — including text, graphics, and
+            software — are the intellectual property of Spendly and protected by applicable copyright and
+            trademark laws. You may not use them without prior written consent.
+        </p>
+
+        <h2>6. Disclaimer of Warranties</h2>
+        <p>
+            Spendly is provided on an "as is" and "as available" basis without warranties of any kind,
+            either express or implied. We do not warrant that the Service will be uninterrupted, error-free,
+            or free of viruses or other harmful components.
+        </p>
+        <p>
+            Spendly is a personal budgeting tool and does not constitute financial, investment, or legal
+            advice. You are solely responsible for any financial decisions you make based on information
+            displayed in the Service.
+        </p>
+
+        <h2>7. Limitation of Liability</h2>
+        <p>
+            To the fullest extent permitted by law, Spendly and its operators shall not be liable for any
+            indirect, incidental, special, consequential, or punitive damages — including loss of profits,
+            data, or goodwill — arising out of or in connection with your use of the Service, even if we
+            have been advised of the possibility of such damages.
+        </p>
+
+        <h2>8. Changes to Terms</h2>
+        <p>
+            We may revise these Terms and Conditions at any time. When we do, we will update the "Last
+            updated" date at the top of this page. We encourage you to review this page periodically.
+            Material changes will be communicated via an in-app notice or email where reasonably
+            practicable.
+        </p>
+
+        <div class="legal-contact-box">
+            <p>
+                Questions about these terms? Reach out at
+                <a href="mailto:support@spendly.app">support@spendly.app</a> and we'll get back to you.
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

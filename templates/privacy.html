@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy — Spendly{% endblock %}
+
+{% block head %}
+<style>
+    .legal-section {
+        padding: 4rem 2rem 5rem;
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .legal-header {
+        margin-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 2rem;
+    }
+
+    .legal-badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-light);
+        padding: 0.3rem 0.75rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+    }
+
+    .legal-title {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        color: var(--ink);
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-meta {
+        font-size: 0.875rem;
+        color: var(--ink-faint);
+    }
+
+    .legal-body h2 {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--ink);
+        margin-top: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .legal-body p {
+        font-size: 0.9375rem;
+        color: var(--ink-soft);
+        line-height: 1.75;
+        margin-bottom: 1rem;
+    }
+
+    .legal-body ul {
+        margin: 0.5rem 0 1rem 1.5rem;
+        color: var(--ink-soft);
+        font-size: 0.9375rem;
+        line-height: 1.75;
+    }
+
+    .legal-body ul li {
+        margin-bottom: 0.35rem;
+    }
+
+    .legal-contact-box {
+        margin-top: 3rem;
+        background: var(--paper-warm);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 1.5rem 2rem;
+    }
+
+    .legal-contact-box p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+    }
+
+    .legal-contact-box a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .legal-contact-box a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="legal-section">
+
+    <header class="legal-header">
+        <div class="legal-badge">Legal</div>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-meta">Last updated: June 10, 2026</p>
+    </header>
+
+    <div class="legal-body">
+
+        <h2>1. Introduction</h2>
+        <p>
+            Spendly ("we", "us", or "our") is committed to protecting your personal information. This
+            Privacy Policy explains what data we collect, how we use it, and the choices you have
+            regarding your information when you use the Spendly expense tracking service.
+        </p>
+        <p>
+            By using Spendly, you agree to the collection and use of information as described in this
+            policy.
+        </p>
+
+        <h2>2. Information We Collect</h2>
+        <p>We collect the following categories of information:</p>
+        <ul>
+            <li><strong>Account information</strong> — your name and email address when you register.</li>
+            <li><strong>Expense data</strong> — amounts, categories, dates, and descriptions you enter.</li>
+            <li><strong>Usage data</strong> — pages visited, features used, and session timestamps, collected automatically to improve the Service.</li>
+            <li><strong>Device information</strong> — browser type, operating system, and IP address for security and analytics purposes.</li>
+        </ul>
+        <p>
+            We do not collect payment card details, bank account numbers, or any sensitive financial
+            credentials.
+        </p>
+
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+            <li>Provide, operate, and maintain the Spendly Service.</li>
+            <li>Authenticate your identity and keep your account secure.</li>
+            <li>Personalise your experience and remember your preferences.</li>
+            <li>Analyse usage patterns to improve features and fix bugs.</li>
+            <li>Send important service notifications such as password resets or policy updates.</li>
+        </ul>
+        <p>
+            We do not use your financial data for advertising, and we do not sell your personal
+            information to third parties under any circumstances.
+        </p>
+
+        <h2>4. Data Storage and Security</h2>
+        <p>
+            Your data is stored on secure servers. We implement industry-standard measures — including
+            encryption in transit (HTTPS) and hashed password storage — to protect your information
+            against unauthorised access, alteration, or disclosure.
+        </p>
+        <p>
+            While we take reasonable precautions, no method of transmission over the internet is
+            100% secure. We encourage you to use a strong, unique password for your Spendly account.
+        </p>
+
+        <h2>5. Data Retention</h2>
+        <p>
+            We retain your account and expense data for as long as your account is active. If you
+            delete your account, all associated data will be permanently erased from our systems
+            within 30 days. You may also request deletion of specific records at any time from your
+            account settings.
+        </p>
+
+        <h2>6. Sharing of Information</h2>
+        <p>
+            We do not share your personal information with third parties except in the following
+            limited circumstances:
+        </p>
+        <ul>
+            <li>When required by law or in response to a valid legal process.</li>
+            <li>To protect the rights, property, or safety of Spendly, our users, or the public.</li>
+            <li>With trusted service providers who assist in operating the Service, under strict confidentiality agreements.</li>
+        </ul>
+
+        <h2>7. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
+            <li><strong>Correction</strong> — ask us to correct inaccurate or incomplete data.</li>
+            <li><strong>Deletion</strong> — request that we delete your personal data.</li>
+            <li><strong>Portability</strong> — export your expense data in a machine-readable format.</li>
+            <li><strong>Objection</strong> — opt out of non-essential data processing at any time.</li>
+        </ul>
+        <p>
+            To exercise any of these rights, contact us at the address below.
+        </p>
+
+        <h2>8. Cookies</h2>
+        <p>
+            Spendly uses session cookies strictly necessary for authentication and keeping you logged
+            in. We do not use tracking or advertising cookies. You can configure your browser to
+            refuse cookies, but doing so may prevent you from logging in to the Service.
+        </p>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>
+            We may update this Privacy Policy from time to time. When we do, we will revise the
+            "Last updated" date above. For significant changes, we will notify you via an in-app
+            message or email before the changes take effect.
+        </p>
+
+        <div class="legal-contact-box">
+            <p>
+                Questions or concerns about your privacy? Contact us at
+                <a href="mailto:privacy@spendly.app">privacy@spendly.app</a> — we aim to respond
+                within 48 hours.
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
