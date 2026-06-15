@@ -1,0 +1,29 @@
+templates/base.html
+  s_19ec9df9fa9d4b::t_7e99536e15c896 22-29
+app.py
+  s_19ec9df9fa9d4b::t_ee08ad73a2e059 94-95
+  s_19ec9df9fa9d4b::t_7e65e5b247a3b8 54,56-75
+  s_19ec9df9fa9d4b::t_7dd3fe87819688 2-3
+  s_19ec9df9fa9d4b::t_07812cc5a8a582 98-100
+  s_19ec9df9fa9d4b::t_f92fa4ff251da0 26-27
+.claude/specs/03-login-and-logout.md
+  s_19ec9df9fa9d4b::t_29f9dbbe5a6cfa 1-54
+.claude/plans/03-login-and-logout.md
+  s_19ec9df9fa9d4b::t_50e64403d7c740 1-116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "289cca323e4f8fd247874e9a0b0ea71bd4f2b87f",
+  "prompts": {},
+  "sessions": {
+    "s_19ec9df9fa9d4b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fb20a276-9922-411a-80ab-22e57c6f922c",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
