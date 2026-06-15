@@ -1,0 +1,19 @@
+CLAUDE.md
+  s_5dc07b972bbe8b::t_ff3b97f125d8c5 1-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "b11495725a9c372d46dd26df3b0ebc5f3be3ec71",
+  "prompts": {},
+  "sessions": {
+    "s_5dc07b972bbe8b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9162a29e-63c4-4cc2-83c7-9658d31058a5",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
