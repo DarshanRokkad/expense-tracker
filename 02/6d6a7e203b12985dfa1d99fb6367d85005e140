@@ -1,0 +1,24 @@
+.claude/plans/01-database-setup.md
+  s_b9d2b123a73ef4::t_2be48681ee508d 1-104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "026d6a7e203b12985dfa1d99fb6367d85005e140",
+  "prompts": {},
+  "humans": {
+    "h_afa8b216fb6144": {
+      "author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_b9d2b123a73ef4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f2e52fdf-2cd8-4498-9e97-13572a92674e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
