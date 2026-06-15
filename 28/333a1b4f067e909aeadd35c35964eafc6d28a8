@@ -1,0 +1,14 @@
+.claude/commands/seed-user.md
+  h_afa8b216fb6144 1-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "28333a1b4f067e909aeadd35c35964eafc6d28a8",
+  "prompts": {},
+  "humans": {
+    "h_afa8b216fb6144": {
+      "author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
