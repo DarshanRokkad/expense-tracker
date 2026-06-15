@@ -1,0 +1,28 @@
+app.py
+  s_b9d2b123a73ef4::t_fd6ec58c3f051b 2,6-8
+database/db.py
+  s_b9d2b123a73ef4::t_227b3b60a706c4 1-69
+.claude/specs/01-database-setup.md
+  h_afa8b216fb6144 1-193
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "f2b37cfc37306f9535ccab4319550f21692f2849",
+  "prompts": {},
+  "humans": {
+    "h_afa8b216fb6144": {
+      "author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_b9d2b123a73ef4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f2e52fdf-2cd8-4498-9e97-13572a92674e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
