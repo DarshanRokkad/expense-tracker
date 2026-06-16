@@ -105,36 +105,81 @@ def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
-    user = {
-        "name": "Demo User",
-        "email": "demo@spendly.com",
-        "member_since": "2026-01-15",
-        "initials": "DU",
-    }
-    stats = {
-        "total_spent": "₹6,110",
-        "transaction_count": 8,
-        "top_category": "Shopping",
-    }
-    transactions = [
-        {"date": "2026-06-15", "description": "Restaurant lunch",  "category": "Food",          "amount": "₹450"},
-        {"date": "2026-06-13", "description": "Miscellaneous",      "category": "Other",         "amount": "₹90"},
-        {"date": "2026-06-11", "description": "Clothes",            "category": "Shopping",      "amount": "₹2,200"},
-        {"date": "2026-06-09", "description": "Movie tickets",      "category": "Entertainment", "amount": "₹600"},
-        {"date": "2026-06-07", "description": "Pharmacy",           "category": "Health",        "amount": "₹800"},
-        {"date": "2026-06-05", "description": "Electricity bill",   "category": "Bills",         "amount": "₹1,500"},
-        {"date": "2026-06-03", "description": "Auto rickshaw",      "category": "Transport",     "amount": "₹120"},
-        {"date": "2026-06-01", "description": "Groceries",          "category": "Food",          "amount": "₹350"},
-    ]
-    categories = [
-        {"name": "Shopping",      "total": "₹2,200", "pct": 36},
-        {"name": "Bills",         "total": "₹1,500", "pct": 25},
-        {"name": "Health",        "total": "₹800",   "pct": 13},
-        {"name": "Food",          "total": "₹800",   "pct": 13},
-        {"name": "Entertainment", "total": "₹600",   "pct": 10},
-        {"name": "Transport",     "total": "₹120",   "pct": 2},
-        {"name": "Other",         "total": "₹90",    "pct": 1},
-    ]
+    db = get_db()
+    try:
+        user_row = db.execute(
+            "SELECT id, name, email, created_at FROM users WHERE id = ?",
+            (session["user_id"],),
+        ).fetchone()
+
+        if user_row is None:
+            session.clear()
+            return redirect(url_for("login"))
+
+        words    = user_row["name"].split()
+        initials = (words[0][0] + (words[1][0] if len(words) > 1 else "")).upper()
+        user = {
+            "name":         user_row["name"],
+            "email":        user_row["email"],
+            "member_since": user_row["created_at"][:10],
+            "initials":     initials,
+        }
+
+        agg = db.execute(
+            """
+            SELECT
+                COALESCE(SUM(amount), 0)  AS total,
+                COUNT(*)                  AS cnt,
+                category
+            FROM expenses
+            WHERE user_id = ?
+            GROUP BY category
+            ORDER BY total DESC
+            """,
+            (session["user_id"],),
+        ).fetchall()
+
+        grand_total       = sum(r["total"] for r in agg)
+        transaction_count = sum(r["cnt"]   for r in agg)
+        top_category      = agg[0]["category"] if agg else "—"
+        stats = {
+            "total_spent":       f"₹{grand_total:,.0f}",
+            "transaction_count": transaction_count,
+            "top_category":      top_category,
+        }
+
+        categories = [
+            {
+                "name":  r["category"],
+                "total": f"₹{r['total']:,.0f}",
+                "pct":   round(r["total"] / grand_total * 100) if grand_total else 0,
+            }
+            for r in agg
+        ]
+
+        rows = db.execute(
+            """
+            SELECT date, description, category, amount
+            FROM expenses
+            WHERE user_id = ?
+            ORDER BY date DESC, id DESC
+            LIMIT 10
+            """,
+            (session["user_id"],),
+        ).fetchall()
+
+        transactions = [
+            {
+                "date":        r["date"],
+                "description": r["description"],
+                "category":    r["category"],
+                "amount":      f"₹{r['amount']:,.0f}",
+            }
+            for r in rows
+        ]
+    finally:
+        db.close()
+
     return render_template("profile.html", user=user, stats=stats,
                            transactions=transactions, categories=categories)
 
