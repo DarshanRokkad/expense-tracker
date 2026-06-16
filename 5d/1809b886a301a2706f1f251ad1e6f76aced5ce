@@ -1,0 +1,21 @@
+.claude/specs/04-profile-backend-route.md
+  s_4d01a400819344::t_737e05092d32a3 1-81
+app.py
+  s_4d01a400819344::t_a37eeb2db4a3e6 108-182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "5d1809b886a301a2706f1f251ad1e6f76aced5ce",
+  "prompts": {},
+  "sessions": {
+    "s_4d01a400819344": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d1d14663-5ea7-4108-aa12-9505259cedab",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
