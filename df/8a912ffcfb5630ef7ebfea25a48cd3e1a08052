@@ -1,0 +1,36 @@
+static/css/style.css
+  s_27a3018d5794e6::t_a8521c51e9b279 760-779
+tests/test_04b_profile_date_filtering.py
+  s_27a3018d5794e6::t_3c8b03d7aaced5 1-425
+app.py
+  s_27a3018d5794e6::t_1d3055e188a27a 2
+  s_27a3018d5794e6::t_e098b8da605d59 205,209
+  s_27a3018d5794e6::t_99f72c37bd023a 145
+  s_27a3018d5794e6::t_0e4606794b422f 225-226
+  s_27a3018d5794e6::t_97567dbe45f1ba 175,179
+  s_27a3018d5794e6::t_615f49717e4c74 104-111,117-144,146
+templates/profile.html
+  s_27a3018d5794e6::t_721fdd539ca671 20-37
+  s_27a3018d5794e6::t_14b001c837f844 81-84
+  s_27a3018d5794e6::t_0e3e565a9990b7 102-103
+tests/conftest.py
+  s_27a3018d5794e6::t_a287c56a55d204 1-74
+.claude/specs/04b-profile-date-filtering.md
+  s_27a3018d5794e6::t_fdcbbf60ce9996 1-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "df8a912ffcfb5630ef7ebfea25a48cd3e1a08052",
+  "prompts": {},
+  "sessions": {
+    "s_27a3018d5794e6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "498488c5-087e-4a1f-8425-84d69f391b1e",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
