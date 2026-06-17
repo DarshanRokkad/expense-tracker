@@ -17,6 +17,24 @@
         </div>
     </div>
 
+    {% if error %}
+    <div class="auth-error">{{ error }}</div>
+    {% endif %}
+
+    <!-- Date filter -->
+    <form method="GET" action="{{ url_for('profile') }}" class="filter-bar">
+        <div class="form-group">
+            <label for="start_date">From</label>
+            <input type="date" id="start_date" name="start_date" class="form-input" value="{{ filters.start_date }}">
+        </div>
+        <div class="form-group">
+            <label for="end_date">To</label>
+            <input type="date" id="end_date" name="end_date" class="form-input" value="{{ filters.end_date }}">
+        </div>
+        <button type="submit" class="btn-submit filter-submit">Apply</button>
+        <a href="{{ url_for('profile') }}" class="btn-ghost">Clear</a>
+    </form>
+
     <!-- Summary stats -->
     <div class="stats-row">
         <div class="stat-card">
@@ -60,6 +78,10 @@
                         </td>
                         <td class="col-amount">{{ txn.amount }}</td>
                     </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="empty-state">No transactions in this date range.</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -77,6 +99,8 @@
                     </div>
                     <span class="cat-row-total">{{ cat.total }}</span>
                 </div>
+                {% else %}
+                <div class="empty-state">No expenses in this date range.</div>
                 {% endfor %}
             </div>
         </div>

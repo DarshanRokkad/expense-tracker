@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from database.db import get_db, init_db, seed_db
@@ -100,10 +101,48 @@ def dashboard():
     return "Dashboard — coming in Step 5"
 
 
+def _is_valid_date(value):
+    try:
+        datetime.strptime(value, "%Y-%m-%d")
+        return True
+    except ValueError:
+        return False
+
+
 @app.route("/profile")
 def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
+
+    start_date_raw = request.args.get("start_date", "").strip()
+    end_date_raw   = request.args.get("end_date", "").strip()
+
+    error = None
+    start_date = start_date_raw or None
+    end_date   = end_date_raw or None
+
+    if start_date and not _is_valid_date(start_date):
+        error = "Invalid start date."
+        start_date = end_date = None
+    elif end_date and not _is_valid_date(end_date):
+        error = "Invalid end date."
+        start_date = end_date = None
+    elif start_date and end_date and start_date > end_date:
+        error = "Start date must be before end date."
+        start_date = end_date = None
+
+    filters = {"start_date": start_date_raw, "end_date": end_date_raw}
+
+    date_clauses = []
+    date_params  = []
+    if start_date:
+        date_clauses.append("date >= ?")
+        date_params.append(start_date)
+    if end_date:
+        date_clauses.append("date <= ?")
+        date_params.append(end_date)
+    date_sql = (" AND " + " AND ".join(date_clauses)) if date_clauses else ""
+    query_params = tuple([session["user_id"]] + date_params)
 
     db = get_db()
     try:
@@ -133,10 +172,11 @@ def profile():
                 category
             FROM expenses
             WHERE user_id = ?
+            """ + date_sql + """
             GROUP BY category
             ORDER BY total DESC
             """,
-            (session["user_id"],),
+            query_params,
         ).fetchall()
 
         grand_total       = sum(r["total"] for r in agg)
@@ -162,10 +202,11 @@ def profile():
             SELECT date, description, category, amount
             FROM expenses
             WHERE user_id = ?
+            """ + date_sql + """
             ORDER BY date DESC, id DESC
             LIMIT 10
             """,
-            (session["user_id"],),
+            query_params,
         ).fetchall()
 
         transactions = [
@@ -181,7 +222,8 @@ def profile():
         db.close()
 
     return render_template("profile.html", user=user, stats=stats,
-                           transactions=transactions, categories=categories)
+                           transactions=transactions, categories=categories,
+                           filters=filters, error=error)
 
 
 @app.route("/expenses/add")

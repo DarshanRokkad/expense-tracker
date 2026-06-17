@@ -757,6 +757,26 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
     .profile-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: 1fr; }
+    .filter-bar { flex-direction: column; align-items: stretch; }
+}
+
+.filter-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.filter-bar .form-group { margin-bottom: 0; }
+
+.filter-submit { width: auto; margin-top: 0; }
+
+.empty-state {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 0.875rem;
 }
 
 /* ------------------------------------------------------------------ */
