@@ -1,0 +1,22 @@
+.claude/commands/code-review-feature.md
+  h_afa8b216fb6144 1-109
+.claude/commands/test-feature.md
+  h_afa8b216fb6144 1-97
+.claude/agents/spendly-security-reviewer.md
+  h_afa8b216fb6144 1-181
+.claude/agents/spendly-test-writer.md
+  h_afa8b216fb6144 1-68
+.claude/agents/spendly-quality-reviewer.md
+  h_afa8b216fb6144 1-174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.7",
+  "base_commit_sha": "a509623972d6d617f9fcefc4377bcabf4f0e50f5",
+  "prompts": {},
+  "humans": {
+    "h_afa8b216fb6144": {
+      "author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
