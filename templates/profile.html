@@ -85,6 +85,21 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <div class="profile-card-footer pagination-bar">
+                {% if pagination.has_prev %}
+                <a href="{{ url_for('profile', start_date=filters.start_date, end_date=filters.end_date, page=pagination.page - 1) }}" class="btn-ghost">&larr; Previous</a>
+                {% else %}
+                <span class="btn-ghost btn-disabled">&larr; Previous</span>
+                {% endif %}
+
+                <span class="pagination-status">Page {{ pagination.page }} of {{ pagination.total_pages }}</span>
+
+                {% if pagination.has_next %}
+                <a href="{{ url_for('profile', start_date=filters.start_date, end_date=filters.end_date, page=pagination.page + 1) }}" class="btn-ghost">Next &rarr;</a>
+                {% else %}
+                <span class="btn-ghost btn-disabled">Next &rarr;</span>
+                {% endif %}
+            </div>
         </div>
 
         <!-- Category breakdown -->
