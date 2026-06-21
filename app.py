@@ -18,6 +18,8 @@ with app.app_context():
 
 @app.route("/")
 def landing():
+    if session.get("user_id"):
+        return redirect(url_for("dashboard"))
     return render_template("landing.html")
 
 
@@ -149,12 +151,14 @@ def dashboard():
 
         days = [
             {"label": (week_start + timedelta(days=i)).strftime("%a"),
+             "full_date": (week_start + timedelta(days=i)).strftime("%b") + " " + str((week_start + timedelta(days=i)).day),
              "total": totals_by_date.get((week_start + timedelta(days=i)).isoformat(), 0)}
             for i in range(7)
         ]
         max_day_total = max(d["total"] for d in days)
         trend = [
-            {**d, "pct": round(d["total"] / max_day_total * 100) if max_day_total else 0}
+            {**d, "pct": round(d["total"] / max_day_total * 100) if max_day_total else 0,
+             "amount_label": f"₹{d['total']:,.0f}"}
             for d in days
         ]
 
@@ -194,8 +198,16 @@ def profile():
     if not session.get("user_id"):
         return redirect(url_for("login"))
 
+    PAGE_SIZE = 10
+
     start_date_raw = request.args.get("start_date", "").strip()
     end_date_raw   = request.args.get("end_date", "").strip()
+
+    try:
+        page = int(request.args.get("page", 1))
+    except ValueError:
+        page = 1
+    page = max(page, 1)
 
     error = None
     start_date = start_date_raw or None
@@ -277,6 +289,10 @@ def profile():
             for r in agg
         ]
 
+        total_pages = max(1, (transaction_count + PAGE_SIZE - 1) // PAGE_SIZE)
+        page = min(page, total_pages)
+        offset = (page - 1) * PAGE_SIZE
+
         rows = db.execute(
             """
             SELECT date, description, category, amount
@@ -284,9 +300,9 @@ def profile():
             WHERE user_id = ?
             """ + date_sql + """
             ORDER BY date DESC, id DESC
-            LIMIT 10
+            LIMIT ? OFFSET ?
             """,
-            query_params,
+            query_params + (PAGE_SIZE, offset),
         ).fetchall()
 
         transactions = [
@@ -298,12 +314,19 @@ def profile():
             }
             for r in rows
         ]
+
+        pagination = {
+            "page":        page,
+            "total_pages": total_pages,
+            "has_prev":    page > 1,
+            "has_next":    page < total_pages,
+        }
     finally:
         db.close()
 
     return render_template("profile.html", user=user, stats=stats,
                            transactions=transactions, categories=categories,
-                           filters=filters, error=error)
+                           filters=filters, error=error, pagination=pagination)
 
 
 @app.route("/expenses/add")

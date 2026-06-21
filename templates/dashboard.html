@@ -33,7 +33,7 @@
             <div class="profile-card-header">Last 7 Days</div>
             <div class="trend-chart">
                 {% for day in trend %}
-                <div class="trend-bar-col">
+                <div class="trend-bar-col" data-tooltip="{{ day.amount_label }} on {{ day.full_date }}">
                     <div class="trend-bar-track">
                         <div class="trend-bar-fill" style="height: {{ day.pct }}%"></div>
                     </div>
