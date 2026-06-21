@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Spendly{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    <div class="dashboard-header">
+        <h1 class="profile-page-title">Welcome back, {{ user.name }}</h1>
+        <a href="{{ url_for('add_expense') }}" class="btn-primary">+ Add Expense</a>
+    </div>
+
+    <!-- This-month stats -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.total_spent }}</div>
+            <div class="stat-label">Spent This Month</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.transaction_count }}</div>
+            <div class="stat-label">Transactions</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ stats.daily_average }}</div>
+            <div class="stat-label">Daily Average</div>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+
+        <!-- 7-day spending trend -->
+        <div class="profile-card">
+            <div class="profile-card-header">Last 7 Days</div>
+            <div class="trend-chart">
+                {% for day in trend %}
+                <div class="trend-bar-col">
+                    <div class="trend-bar-track">
+                        <div class="trend-bar-fill" style="height: {{ day.pct }}%"></div>
+                    </div>
+                    <span class="trend-bar-label">{{ day.label }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Recent transactions -->
+        <div class="profile-card">
+            <div class="profile-card-header">Recent Transactions</div>
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th class="col-amount">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for txn in transactions %}
+                    <tr>
+                        <td class="col-date">{{ txn.date }}</td>
+                        <td>
+                            {{ txn.description }}
+                            <span class="badge badge-{{ txn.category | lower }}">
+                                {{ txn.category }}
+                            </span>
+                        </td>
+                        <td class="col-amount">{{ txn.amount }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="3" class="empty-state">No transactions yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="profile-card-footer">
+                <a href="{{ url_for('profile') }}" class="btn-ghost">View all transactions</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

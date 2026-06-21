@@ -820,3 +820,71 @@ a { color: inherit; text-decoration: none; }
     font-size: 0.9rem;
     color: var(--ink-muted);
 }
+
+/* ------------------------------------------------------------------ */
+/* Dashboard page                                                      */
+/* ------------------------------------------------------------------ */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header .profile-page-title { margin-bottom: 0; }
+
+.trend-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem;
+    height: 160px;
+    padding: 1.5rem;
+}
+
+.trend-bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex: 1;
+    height: 100%;
+}
+
+.trend-bar-track {
+    width: 100%;
+    max-width: 28px;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    background: var(--border-soft);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.trend-bar-fill {
+    width: 100%;
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+}
+
+.trend-bar-label {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.profile-card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-soft);
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .dashboard-header { flex-direction: column; align-items: flex-start; }
+    .trend-chart { height: 120px; }
+}

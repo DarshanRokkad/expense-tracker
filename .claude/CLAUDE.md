@@ -15,14 +15,15 @@ source .venv/bin/activate
 # Run dev server (port 5001, debug mode)
 python app.py
 
-# Run tests
-pytest
+# Run tests (must use -m pytest — bare `pytest` fails to resolve the
+# `database` package on import in this repo)
+python -m pytest
 
 # Run a single test file
-pytest tests/test_auth.py
+python -m pytest tests/test_05_dashboard.py
 
 # Run a single test
-pytest tests/test_auth.py::test_register
+python -m pytest tests/test_05_dashboard.py::test_dashboard_logged_in_returns_200
 ```
 
 The SQLite database file is `expense_tracker.db` (gitignored). It is created by `init_db()` in `database/db.py`.
@@ -40,15 +41,20 @@ The SQLite database file is `expense_tracker.db` (gitignored). It is created by 
 
 **Static assets:** `static/css/style.css` (global), `static/css/landing.css` (landing only), `static/js/main.js` (global JS).
 
-## Planned route stubs (not yet implemented)
+## Implemented routes
 
-| Route | Description | Planned step |
+| Route | Description | Step |
 |---|---|---|
 | `POST /register` | Create user account | Step 2 |
 | `POST /login` | Session login | Step 3 |
 | `/logout` | Session logout | Step 3 |
-| `/profile` | User profile page | Step 4 |
-| `GET /dashboard` | Expense dashboard | Step 5–6 |
+| `/profile` | User profile page, with optional `start_date`/`end_date` filtering | Step 4 |
+| `GET /dashboard` | This-month stats, 7-day spend trend, recent transactions | Step 5 |
+
+## Planned route stubs (not yet implemented)
+
+| Route | Description | Planned step |
+|---|---|---|
 | `POST /expenses/add` | Add expense | Step 7 |
 | `POST /expenses/<id>/edit` | Edit expense | Step 8 |
 | `POST /expenses/<id>/delete` | Delete expense | Step 9 |

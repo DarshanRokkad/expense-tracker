@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from database.db import get_db, init_db, seed_db
@@ -98,7 +98,87 @@ def logout():
 
 @app.route("/dashboard")
 def dashboard():
-    return "Dashboard — coming in Step 5"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    today       = date.today()
+    month_start = today.replace(day=1)
+
+    db = get_db()
+    try:
+        user_row = db.execute(
+            "SELECT id, name FROM users WHERE id = ?",
+            (session["user_id"],),
+        ).fetchone()
+
+        if user_row is None:
+            session.clear()
+            return redirect(url_for("login"))
+
+        user = {"name": user_row["name"]}
+
+        # ---- This-month stats ---- #
+        month_row = db.execute(
+            """
+            SELECT COALESCE(SUM(amount), 0) AS total, COUNT(*) AS cnt
+            FROM expenses
+            WHERE user_id = ? AND date >= ? AND date <= ?
+            """,
+            (session["user_id"], month_start.isoformat(), today.isoformat()),
+        ).fetchone()
+
+        total_spent = month_row["total"]
+        stats = {
+            "total_spent":       f"₹{total_spent:,.0f}",
+            "transaction_count": month_row["cnt"],
+            "daily_average":     f"₹{(total_spent / today.day):,.0f}" if total_spent else "₹0",
+        }
+
+        # ---- 7-day trend ---- #
+        week_start = today - timedelta(days=6)
+        day_rows = db.execute(
+            """
+            SELECT date, COALESCE(SUM(amount), 0) AS total
+            FROM expenses
+            WHERE user_id = ? AND date >= ? AND date <= ?
+            GROUP BY date
+            """,
+            (session["user_id"], week_start.isoformat(), today.isoformat()),
+        ).fetchall()
+        totals_by_date = {r["date"]: r["total"] for r in day_rows}
+
+        days = [
+            {"label": (week_start + timedelta(days=i)).strftime("%a"),
+             "total": totals_by_date.get((week_start + timedelta(days=i)).isoformat(), 0)}
+            for i in range(7)
+        ]
+        max_day_total = max(d["total"] for d in days)
+        trend = [
+            {**d, "pct": round(d["total"] / max_day_total * 100) if max_day_total else 0}
+            for d in days
+        ]
+
+        # ---- Recent transactions ---- #
+        rows = db.execute(
+            """
+            SELECT date, description, category, amount
+            FROM expenses
+            WHERE user_id = ?
+            ORDER BY date DESC, id DESC
+            LIMIT 5
+            """,
+            (session["user_id"],),
+        ).fetchall()
+        transactions = [
+            {"date": r["date"], "description": r["description"],
+             "category": r["category"], "amount": f"₹{r['amount']:,.0f}"}
+            for r in rows
+        ]
+    finally:
+        db.close()
+
+    return render_template("dashboard.html", user=user, stats=stats,
+                           trend=trend, transactions=transactions)
 
 
 def _is_valid_date(value):
