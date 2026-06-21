@@ -299,7 +299,7 @@ def profile():
 
         rows = db.execute(
             """
-            SELECT date, description, category, amount
+            SELECT id, date, description, category, amount
             FROM expenses
             WHERE user_id = ?
             """ + date_sql + """
@@ -311,6 +311,7 @@ def profile():
 
         transactions = [
             {
+                "id":          r["id"],
                 "date":        r["date"],
                 "description": r["description"],
                 "category":    r["category"],
@@ -383,9 +384,63 @@ def add_expense():
     return redirect(url_for("dashboard"))
 
 
-@app.route("/expenses/<int:id>/edit")
+@app.route("/expenses/<int:id>/edit", methods=["GET", "POST"])
 def edit_expense(id):
-    return "Edit expense — coming in Step 8"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    db = get_db()
+    try:
+        row = db.execute(
+            "SELECT id, amount, category, date, description FROM expenses WHERE id = ? AND user_id = ?",
+            (id, session["user_id"]),
+        ).fetchone()
+
+        if row is None:
+            return redirect(url_for("profile"))
+
+        if request.method == "GET":
+            expense = {
+                "id": row["id"],
+                "amount": f"{row['amount']:.2f}".rstrip("0").rstrip("."),
+                "category": row["category"],
+                "date": row["date"],
+                "description": row["description"],
+            }
+            return render_template("edit_expense.html", expense=expense, categories=VALID_CATEGORIES)
+
+        amount_raw  = request.form.get("amount", "").strip()
+        category    = request.form.get("category", "").strip()
+        date_raw    = request.form.get("date", "").strip()
+        description = request.form.get("description", "").strip()
+
+        error = None
+        try:
+            amount = float(amount_raw)
+        except ValueError:
+            amount = None
+
+        if amount is None or not math.isfinite(amount) or amount <= 0:
+            error = "Please enter a valid amount greater than 0."
+        elif category not in VALID_CATEGORIES:
+            error = "Please select a valid category."
+        elif not date_raw or not _is_valid_date(date_raw):
+            error = "Please enter a valid date."
+
+        if error:
+            expense = {"id": id, "amount": amount_raw, "category": category,
+                       "date": date_raw, "description": description}
+            return render_template("edit_expense.html", error=error, expense=expense, categories=VALID_CATEGORIES)
+
+        db.execute(
+            "UPDATE expenses SET amount = ?, category = ?, date = ?, description = ? WHERE id = ? AND user_id = ?",
+            (amount, category, date_raw, description, id, session["user_id"]),
+        )
+        db.commit()
+    finally:
+        db.close()
+
+    return redirect(url_for("profile"))
 
 
 @app.route("/expenses/<int:id>/delete")
