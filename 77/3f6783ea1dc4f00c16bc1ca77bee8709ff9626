@@ -1,0 +1,36 @@
+.claude/specs/09-delete-expense.md
+  s_e685fb08bce4eb::t_89837bd3768512 1-59
+app.py
+  s_e685fb08bce4eb::t_69a269181ea22d 446,448-461
+templates/edit_expense.html
+  s_e685fb08bce4eb::t_41c6bf27d09787 42-45
+static/css/style.css
+  s_e685fb08bce4eb::t_60b734ba27929c 801-802
+  s_e685fb08bce4eb::t_cd1c1926fdfc83 1049-1051
+  s_e685fb08bce4eb::t_851b71b404170c 300-389
+  s_e685fb08bce4eb::t_a4ede8d8f1c575 286,290
+static/js/main.js
+  s_e685fb08bce4eb::t_8fb4192f8ff105 2-46
+templates/add_expense.html
+  s_e685fb08bce4eb::t_f063dcb0c84038 42-45
+templates/profile.html
+  s_e685fb08bce4eb::t_f7fcfc7b5e6fc5 83
+  s_e685fb08bce4eb::t_0abdf04d957d9a 131-141
+  s_e685fb08bce4eb::t_4782ca3266e2ad 84-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "773f6783ea1dc4f00c16bc1ca77bee8709ff9626",
+  "prompts": {},
+  "sessions": {
+    "s_e685fb08bce4eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c2e4ec1-498f-4190-a58b-b6c9cb667fea",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
