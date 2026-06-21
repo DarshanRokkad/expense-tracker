@@ -1,3 +1,4 @@
+import math
 import sqlite3
 from datetime import datetime, date, timedelta
 from flask import Flask, render_template, request, redirect, url_for, session
@@ -193,6 +194,9 @@ def _is_valid_date(value):
         return False
 
 
+VALID_CATEGORIES = ["Food", "Transport", "Bills", "Health", "Entertainment", "Shopping", "Other"]
+
+
 @app.route("/profile")
 def profile():
     if not session.get("user_id"):
@@ -329,9 +333,54 @@ def profile():
                            filters=filters, error=error, pagination=pagination)
 
 
-@app.route("/expenses/add")
+@app.route("/expenses/add", methods=["GET", "POST"])
 def add_expense():
-    return "Add expense — coming in Step 7"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    today = date.today().isoformat()
+
+    if request.method == "GET":
+        return render_template("add_expense.html", today=today, categories=VALID_CATEGORIES)
+
+    amount_raw  = request.form.get("amount", "").strip()
+    category    = request.form.get("category", "").strip()
+    date_raw    = request.form.get("date", "").strip()
+    description = request.form.get("description", "").strip()
+
+    error = None
+    try:
+        amount = float(amount_raw)
+    except ValueError:
+        amount = None
+
+    if amount is None or not math.isfinite(amount) or amount <= 0:
+        error = "Please enter a valid amount greater than 0."
+    elif category not in VALID_CATEGORIES:
+        error = "Please select a valid category."
+    elif not date_raw or not _is_valid_date(date_raw):
+        error = "Please enter a valid date."
+
+    if error:
+        return render_template(
+            "add_expense.html",
+            error=error,
+            today=today,
+            categories=VALID_CATEGORIES,
+            form={"amount": amount_raw, "category": category, "date": date_raw, "description": description},
+        )
+
+    db = get_db()
+    try:
+        db.execute(
+            "INSERT INTO expenses (user_id, amount, category, date, description) VALUES (?, ?, ?, ?, ?)",
+            (session["user_id"], amount, category, date_raw, description),
+        )
+        db.commit()
+    finally:
+        db.close()
+
+    return redirect(url_for("dashboard"))
 
 
 @app.route("/expenses/<int:id>/edit")

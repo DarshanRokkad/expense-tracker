@@ -937,3 +937,15 @@ a { color: inherit; text-decoration: none; }
     .dashboard-header { flex-direction: column; align-items: flex-start; }
     .trend-chart { height: 120px; }
 }
+
+/* ------------------------------------------------------------------ */
+/* Add expense page                                                    */
+/* ------------------------------------------------------------------ */
+
+.form-card {
+    max-width: var(--auth-width);
+}
+
+.form-card-body {
+    padding: 1.75rem 2rem;
+}
