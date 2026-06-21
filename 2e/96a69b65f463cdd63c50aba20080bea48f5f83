@@ -1,0 +1,28 @@
+app.py
+  s_e685fb08bce4eb::t_87ee879d0e3e3d 387,389-443
+  s_e685fb08bce4eb::t_b3ca4a205dc6fb 302,314
+templates/edit_expense.html
+  s_e685fb08bce4eb::t_5fabe3ae419da7 1-48
+.claude/specs/08-edit-expense.md
+  s_e685fb08bce4eb::t_5523eae25bc138 1-71
+templates/profile.html
+  s_e685fb08bce4eb::t_1e8be6b4388bec 67,81-83,87
+static/css/style.css
+  s_e685fb08bce4eb::t_81db1c5c80a675 707-709
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "2e96a69b65f463cdd63c50aba20080bea48f5f83",
+  "prompts": {},
+  "sessions": {
+    "s_e685fb08bce4eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c2e4ec1-498f-4190-a58b-b6c9cb667fea",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
