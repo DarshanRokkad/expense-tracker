@@ -39,8 +39,10 @@
                     <input type="text" id="description" name="description" class="form-input"
                            placeholder="Optional note" value="{{ form.description if form else '' }}">
                 </div>
-                <button type="submit" class="btn-submit">Add Expense</button>
-                <a href="{{ url_for('dashboard') }}" class="btn-ghost">Cancel</a>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Add Expense</button>
+                    <a href="{{ url_for('dashboard') }}" class="btn-ghost">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

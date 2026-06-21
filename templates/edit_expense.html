@@ -39,8 +39,10 @@
                     <input type="text" id="description" name="description" class="form-input"
                            placeholder="Optional note" value="{{ expense.description }}">
                 </div>
-                <button type="submit" class="btn-submit">Save Changes</button>
-                <a href="{{ url_for('profile') }}" class="btn-ghost">Cancel</a>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Save Changes</button>
+                    <a href="{{ url_for('profile') }}" class="btn-ghost">Cancel</a>
+                </div>
             </form>
         </div>
     </div>
