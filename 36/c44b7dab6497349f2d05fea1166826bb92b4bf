@@ -1,0 +1,27 @@
+static/css/style.css
+  s_e685fb08bce4eb::t_85ec0e533c747c 940-951
+.claude/specs/07-add-expenses.md
+  s_e685fb08bce4eb::t_4f1fc8501f1454 1-67
+templates/add_expense.html
+  s_e685fb08bce4eb::t_eb8c387efd5949 1-48
+app.py
+  s_e685fb08bce4eb::t_76d685c7bd31ee 1
+  s_e685fb08bce4eb::t_6b41a0a99883b6 197-199
+  s_e685fb08bce4eb::t_88b5c1127c52d9 336,338-383
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "36c44b7dab6497349f2d05fea1166826bb92b4bf",
+  "prompts": {},
+  "sessions": {
+    "s_e685fb08bce4eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c2e4ec1-498f-4190-a58b-b6c9cb667fea",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
