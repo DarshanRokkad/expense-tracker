@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Add Expense — Spendly{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <h1 class="profile-page-title">Add Expense</h1>
+
+    <div class="profile-card form-card">
+        <div class="profile-card-header">Add Expense</div>
+        <div class="form-card-body">
+            {% if error %}
+            <div class="auth-error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('add_expense') }}">
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" class="form-input"
+                           step="0.01" min="0.01" placeholder="0.00"
+                           value="{{ form.amount if form else '' }}" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" class="form-input" required>
+                        <option value="" disabled {% if not (form and form.category) %}selected{% endif %}>Select a category</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if form and form.category == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" class="form-input"
+                           value="{{ form.date if form else today }}" max="{{ today }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" name="description" class="form-input"
+                           placeholder="Optional note" value="{{ form.description if form else '' }}">
+                </div>
+                <button type="submit" class="btn-submit">Add Expense</button>
+                <a href="{{ url_for('dashboard') }}" class="btn-ghost">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
