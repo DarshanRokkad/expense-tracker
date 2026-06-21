@@ -1,0 +1,30 @@
+templates/dashboard.html
+  s_e685fb08bce4eb::t_44fd32d3e04755 36
+templates/profile.html
+  s_e685fb08bce4eb::t_42e18289fa4ef0 88-102
+app.py
+  s_e685fb08bce4eb::t_e3c80cdc0186ae 292-295,303,305,317-323,329
+  s_e685fb08bce4eb::t_71abe2fcc61732 154
+  s_e685fb08bce4eb::t_871c5ded6052c2 201-202,206-210
+  s_e685fb08bce4eb::t_bd3798f4e78931 21-22
+  s_e685fb08bce4eb::t_0d324f6cccbe81 160-161
+static/css/style.css
+  s_e685fb08bce4eb::t_6cdcafa9caa33a 879,911-935
+  s_e685fb08bce4eb::t_ed8521490c6ccb 848,858-878
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9",
+  "base_commit_sha": "8abc28304f5903f60fe9478379473a829afb522a",
+  "prompts": {},
+  "sessions": {
+    "s_e685fb08bce4eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2c2e4ec1-498f-4190-a58b-b6c9cb667fea",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Darshan <darshanrokkad2003@gmail.com>"
+    }
+  }
+}
